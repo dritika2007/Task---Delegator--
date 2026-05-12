@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 
 # Page Config
-st.set_page_config(page_title="AI Task Delegator", page_icon="🎯", layout="wide")
+st.set_page_config(page_title="AI Task Delegator", page_icon="💼", layout="wide")
 
 # Load data
 @st.cache_data
