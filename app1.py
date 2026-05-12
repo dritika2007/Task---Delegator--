@@ -28,7 +28,7 @@ st.title("💼 Smart Task Delegator")
 col1, col2 = st.columns([2, 1])
 
 with col1:
-    st.subheader("Step 1: Define the Task")
+    st.subheader("Define the Task")
     
     # Dropdown for common tasks
     selected_template = st.selectbox(
