@@ -23,7 +23,7 @@ common_tasks = {
     "Bug Fixing": "Fix the login authentication bug in the Node.js backend and run Jest tests."
 }
 
-st.title("🎯 Smart Task Delegator")
+st.title("💼 Smart Task Delegator")
 
 col1, col2 = st.columns([2, 1])
 
