@@ -44,7 +44,7 @@ with col1:
         height=150
     )
 
-    if st.button("🚀 👤 Find Most Suitable Worker", use_container_width=True):
+    if st.button("👤 Find Most Suitable Worker", use_container_width=True):
         if task_input:
             # --- MATCHING LOGIC ---
             def calculate_score(row):
