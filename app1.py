@@ -38,7 +38,7 @@ with col1:
     
     # The text area will now auto-fill based on the dropdown selection
     task_input = st.text_area(
-        "Describe the 'Upar se' task:",
+        "Describe the  task:",
         value=common_tasks[selected_template],
         placeholder="Or type specific details here...",
         height=150
