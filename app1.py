@@ -25,7 +25,7 @@ common_tasks = {
 
 st.title("💼 Smart Task Delegator")
 
-col1, col2 = st.columns([2, 1])
+col1, col2 = st.columns([2, 1.5]) # Slightly widened col2 for better readability
 
 with col1:
     st.subheader("Define the Task")
@@ -44,7 +44,7 @@ with col1:
         height=150
     )
 
-    if st.button("👤 Find Most Suitable Worker", use_container_width=True):
+    if st.button("👤 Find Suitable Workers", use_container_width=True):
         if task_input:
             # --- MATCHING LOGIC ---
             def calculate_score(row):
@@ -61,13 +61,24 @@ with col1:
                 return score
 
             df['match_score'] = df.apply(calculate_score, axis=1)
-            top_match = df.sort_values(by='match_score', ascending=False).iloc[0]
+            
+            # --- UPDATED: Get Top 3 matches instead of just 1 ---
+            top_matches = df.sort_values(by='match_score', ascending=False).head(3)
 
             with col2:
-                st.success(f"Best Match: **{top_match['name']}**")
-                st.write(f"**Role:** {top_match['role']}")
-                st.write(f"**Skills:** {top_match['skills']}")
-                st.progress(int(top_match['load']) * 10)
-                st.write(f"Workload: {top_match['load']}/10")
+                st.subheader("Top Recommendations")
+                
+                for i, match in top_matches.iterrows():
+                    # Using a container for each recommendation to look clean
+                    with st.container():
+                        st.write(f"### {match['name']}")
+                        st.write(f"**Role:** {match['role']}")
+                        st.write(f"**Skills:** {match['skills']}")
+                        
+                        # Calculate progress (capped at 100)
+                        load_val = min(int(match['load']) * 10, 100)
+                        st.progress(load_val)
+                        st.write(f"Workload: {match['load']}/10")
+                        st.divider() # Adds a line between recommendations
         else:
             st.error("Please enter or select a task.")
